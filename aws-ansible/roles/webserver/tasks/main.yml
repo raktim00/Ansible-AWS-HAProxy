@@ -1,0 +1,19 @@
+---
+# tasks file for webserver
+
+- name: Install httpd and php program
+  package:
+    name:
+      - httpd
+      - php
+    state: present
+
+- name: Deploying Code from GitHub
+  get_url:
+    url: https://raw.githubusercontent.com/raktim00/DevOpsHW/master/index.php 
+    dest: /var/www/html/index.php
+
+- name: starting httpd service
+  service:
+    name: "httpd"
+    state: started
